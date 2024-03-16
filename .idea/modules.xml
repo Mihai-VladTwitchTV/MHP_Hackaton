@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/springboot-Hackaton.iml" filepath="$PROJECT_DIR$/.idea/springboot-Hackaton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-Hackaton/springboot-Hackaton.iml" filepath="$PROJECT_DIR$/springboot-Hackaton/springboot-Hackaton.iml" />
     </modules>
   </component>
 </project>

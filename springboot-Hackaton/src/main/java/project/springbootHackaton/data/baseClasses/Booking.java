@@ -14,6 +14,19 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bookingId;
 
+    public Booking() {
+    }
+
+    public Booking(LocalDateTime startTime, LocalDateTime endTime, String purpose, User user, Desk desk) {
+        //this.bookingId = bookingId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+//       this.status = status;
+        this.purpose = purpose;
+        this.user = user;
+        this.desk = desk;
+    }
+
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String status;

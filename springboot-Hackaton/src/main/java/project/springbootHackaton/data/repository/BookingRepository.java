@@ -7,9 +7,11 @@ import project.springbootHackaton.data.baseClasses.Desk;
 import project.springbootHackaton.data.baseClasses.Role;
 import project.springbootHackaton.data.baseClasses.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
+    List<Booking> findByDeskId(Long deskId);
 }

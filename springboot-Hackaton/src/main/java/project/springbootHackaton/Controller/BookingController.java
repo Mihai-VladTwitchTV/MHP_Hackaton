@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.springbootHackaton.data.baseClasses.Booking;
+import project.springbootHackaton.data.baseClasses.User;
 import project.springbootHackaton.service.BookingService;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,18 +26,10 @@ public class BookingController {
     }
 
     @PostMapping
-    public ResponseEntity<String> bookDesk(@RequestParam Long deskId,
-                                           @RequestParam LocalDateTime startTime,
-                                           @RequestParam LocalDateTime endTime,
-                                           @RequestParam String purpose,
-                                           @RequestParam Long userId,
-                                           @RequestParam Long deskID) {
-        try {
-            bookingService.bookDesk(deskId, startTime, endTime, purpose, userId, deskID);
-            return ResponseEntity.ok("Desk booked successfully.");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
+        Long userIdINT = booking.getUser().getUserID();
+        Booking createdUser = bookingService.createBooking(booking.getBookingId(),booking.getStartTime(),booking.getEndTime(),booking.getPurpose(),userIdINT,booking.getDesk().getId() );
+        return ResponseEntity.ok(createdUser);
     }
 
     @GetMapping("/{deskId}")
@@ -44,5 +37,13 @@ public class BookingController {
         List<Booking> bookings = bookingService.getBookingsForDesk(deskId);
         return ResponseEntity.ok(bookings);
     }
+
+    @GetMapping()
+    public ResponseEntity<List<Booking>> getBookings() {
+        List<Booking> bookings = bookingService.getAll();
+        return ResponseEntity.ok(bookings);
+    }
+
+
 }
 

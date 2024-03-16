@@ -59,6 +59,18 @@ public class BookingService {
         return true;
     }
 
+    public List<Booking> getAll(){
+        return bookingRepository.findAll();
+    }
+
+
+    public void createBooking(Long desk_id, LocalDateTime startTime, LocalDateTime endTime,String purpose,Integer userID,Long deskID){
+        Desk desk = deskRepo.findById(deskID).get();
+        User user = userRepository.findById(userID).get();
+        Booking newBooking = new Booking(startTime,endTime,purpose,user,desk);
+        bookingRepository.save(newBooking);
+    }
+
     public void bookDesk(Long desk_id, LocalDateTime startTime, LocalDateTime endTime,String purpose,Long userID,Long deskID){
         if(userRepository.findById(userID).isEmpty())
             throw new IllegalArgumentException("User doesnt exist");
@@ -67,9 +79,8 @@ public class BookingService {
             throw new IllegalArgumentException("Desk doesnt exist");
         if (isDeskBooked(deskID, startTime, endTime))
             throw new IllegalArgumentException("Desk is booked");
-        Desk desk = deskRepo.findById(deskID).get();
-        Booking newBooking = new Booking(startTime,endTime,purpose,user,desk);
-        bookingRepository.save(newBooking);
+        createBooking(desk_id,startTime,endTime,purpose,userID,deskID);
+
 
 
 }

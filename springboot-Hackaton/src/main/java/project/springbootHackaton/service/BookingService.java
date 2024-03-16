@@ -29,6 +29,10 @@ public class BookingService {
         this.bookingRepository = bookingRepository;
     }
 
+    public List<Booking> getBookingsForDesk(Long deskId) {
+        return bookingRepository.findByDeskId(deskId);
+    }
+
     public boolean isDeskBooked(Long deskId, LocalDateTime startTime, LocalDateTime endTime) {
         List<Booking> bookings = bookingRepository.findByDeskId(deskId);
         if (bookings.isEmpty())

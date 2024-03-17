@@ -27,8 +27,14 @@ public class BookingController {
 
     @PostMapping
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
-        Long userIdINT = booking.getUser().getUserID();
-        Booking createdUser = bookingService.createBooking(booking.getBookingId(),booking.getStartTime(),booking.getEndTime(),booking.getPurpose(),userIdINT,booking.getDesk().getId() );
+        Booking createdUser = bookingService.createBooking(booking.
+                getBookingId(),
+                booking.getStartTime(),
+                booking.getEndTime(),
+                booking.getPurpose(),
+                booking.getUser().
+                getUserID(),
+                booking.getDesk().getId() );
         return ResponseEntity.ok(createdUser);
     }
 

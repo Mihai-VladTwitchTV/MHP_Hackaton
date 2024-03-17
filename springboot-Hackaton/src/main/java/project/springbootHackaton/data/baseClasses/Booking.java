@@ -32,9 +32,15 @@ public class Booking {
     private String status;
     private String purpose;
 
+
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public User getUser(){
+        return user;
+    }
 
     @ManyToOne
     @JoinColumn(name = "desk_id")

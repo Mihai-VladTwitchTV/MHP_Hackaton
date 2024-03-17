@@ -64,11 +64,11 @@ public class BookingService {
     }
 
 
-    public void createBooking(Long desk_id, LocalDateTime startTime, LocalDateTime endTime,String purpose,Integer userID,Long deskID){
+    public Booking createBooking(Long desk_id, LocalDateTime startTime, LocalDateTime endTime,String purpose,Long userID,Long deskID){
         Desk desk = deskRepo.findById(deskID).get();
         User user = userRepository.findById(userID).get();
-        Booking newBooking = new Booking(startTime,endTime,purpose,user,desk);
-        bookingRepository.save(newBooking);
+        return new Booking(startTime,endTime,purpose,user,desk);
+
     }
 
     public void bookDesk(Long desk_id, LocalDateTime startTime, LocalDateTime endTime,String purpose,Long userID,Long deskID){
@@ -79,7 +79,7 @@ public class BookingService {
             throw new IllegalArgumentException("Desk doesnt exist");
         if (isDeskBooked(deskID, startTime, endTime))
             throw new IllegalArgumentException("Desk is booked");
-        createBooking(desk_id,startTime,endTime,purpose,userID,deskID);
+        bookingRepository.save(createBooking(desk_id,startTime,endTime,purpose,userID,deskID));
 
 
 

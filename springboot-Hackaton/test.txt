@@ -1,0 +1,36 @@
+postman pt bookings:
+{
+  "bookingId": 1,
+  "startTime": "2024-03-17T09:00:00",
+  "endTime": "2024-03-17T11:00:00",
+  "status": null,
+  "purpose": "Team meeting",
+  "user": {
+        "userID": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "password": "$2a$10$7l1Mxg1GxTsV2Of4SO5fyevo2N.AR1/p1PmPJP1IKWWhuWy3FoBPW",
+        "registrationDate": "2024-03-16",
+        "lastLogin": null,
+        "role": null
+    },
+  "desk": {
+    "id": 1,
+    "description": "Large desk near the window",
+    "status": "Available",
+    "capacity": 1,
+    "room": {
+      "id": 1,
+      "roomName": "Meeting Room A",
+      "floor": {
+        "id": 0,
+        "floorName": "Floor 2"
+      }
+    }
+  }
+}
+
+
+
+
+
